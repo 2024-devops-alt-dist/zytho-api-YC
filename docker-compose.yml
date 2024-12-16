@@ -1,0 +1,34 @@
+services:
+  postgres:
+    image: postgres:15-alpine 
+    container_name: api-container
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgresdata:/var/lib/postgresql/data # Volume pour stocker les données. nom_du_volume:emplacement_dans_le_container
+      - ./db-scripts:/docker-entrypoint-initdb.d/ # Chemin des scripts SQL pour l'initialisation de la base de données             
+
+
+  api:
+    build: ./api # Chemin vers le Dockerfile de l'API
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+    environment: # Pour plus de sécurité et n'avoir à les écrire qu'une fois on utilisera .env
+      DATABASE_HOST: ${DB_HOST}
+      DATABASE_PORT: ${DB_PORT}
+      DATABASE_USER: ${DB_USER}
+      DATABASE_PASSWORD: ${DB_PASSWORD}
+      DATABASE_NAME: ${DB_NAME}
+    volumes:
+      - ./api:/app
+      - /app/node_modules
+
+volumes:
+  postgresdata:
