@@ -53,20 +53,55 @@ Cette API Zythologue est une API REST construite afin de pouvoir gérer et explo
 
 ### Etapes
 
-1. Cloner le repo Github 💾
+### 1. Cloner le repo Github 💾
 
 ```bash
  git clone https://github.com/2024-devops-alt-dist/zytho-api-YC.git
  cd zytho-api-YC
  ```
 
- 2. Lancer le Docker de l'API avec Docker Compose 🐳
+### 2. Veillez à ce que les ports ne soient pas déjà occupés 🚢
+
+- PORTS utilisés :
+    - ``5432`` pour postgres
+    - ``3000`` pour l'api Node
+    - Veillez à ce que ces ports soit libres avant de lancer le projet en local 🙂
+    - Dans le doute, arrêtez vos container Docker.
+
+### 3. Mets en place les variables d'environnement du projet
+
+- Copie le fichier .env.sample en un nouveau fichier .env
+
+```shell
+cp .env.sample .env
+````
+
+- Modifie ce nouveau fichier .env pour y ajouter ta propre configuration (username, password, etc)
+
+```
+PORT=3000
+DB_HOST=localhost
+DB_PORT=5432
+DB_USER=
+DB_PASSWORD=
+DB_NAME=zythologue
+```
+- Copie ce fichier .env dans le dossier `api` il a besoin d'être dans la racine et dans le dossier `api`
+
+```shell
+cp .env api/
+````
+
+### 4. Lancer le Docker de l'API avec Docker Compose 🐳
 
  ```
  docker-compose up --build -d
  ```
 
- 3. Débrouille toi 🔥
+Avec cette commande, deux containers sont lancés, un pour la base de données Postgres et un pour l'api Node.
+
+
+### 5. Débrouille toi 🔥
 
  Rends-toi sur l'URL http://localhost:3000
 
