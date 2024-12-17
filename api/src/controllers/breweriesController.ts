@@ -53,7 +53,7 @@ export const createBrewery = async (req: Request, res: Response) => {
 // Mettre à jour les informations d'une brasserie
 export const updateBrewery = async (req: Request, res: Response) => {
   try {
-    const { brewery_id } = req.params;
+    const { id } = req.params;
     const { name, country, region, description, address, picture_url, website_url, user_id } = req.body;
 
     const updatedBrewery = await pool.query(
@@ -61,7 +61,7 @@ export const updateBrewery = async (req: Request, res: Response) => {
         SET name = $1, country = $2, region = $3, description = $4, address = $5, picture_url =$6, website_url = $7, user_id = $8
         WHERE brewery_id = $9
         RETURNING *`,
-      [name, country, region, description, address, picture_url, website_url, user_id, brewery_id]
+      [name, country, region, description, address, picture_url, website_url, user_id, id]
     );
 
     if (updatedBrewery.rowCount === 0) {
