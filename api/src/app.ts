@@ -4,6 +4,7 @@ import {router as beersRoutes} from "./routes/beers";
 import {router as breweriesRoutes} from "./routes/breweries";
 import {router as usersRoutes} from "./routes/users"
 import {router as authRoutes} from "./routes/auth"
+import {router as faveRoutes} from "./routes/favorites"
 import { setupSwagger } from "./swagger";
 
 // const express = require('express');
@@ -16,6 +17,7 @@ app.use("/beers", beersRoutes);
 app.use("/breweries", breweriesRoutes);
 app.use("/users", usersRoutes);
 app.use("/auth", authRoutes);
+app.use("/fave", faveRoutes);
 
 setupSwagger(app)
 

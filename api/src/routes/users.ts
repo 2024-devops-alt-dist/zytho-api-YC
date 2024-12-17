@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getUsers, getUserById, getUserFavoritesById, updateUser, deleteUserById } from "../controllers/usersController";
+import { getUsers, getUserById, updateUser, deleteUserById } from "../controllers/usersController";
 export const router = Router();
 
 /**
@@ -38,28 +38,6 @@ router.get("/", getUsers);
  *         description: Utilisateur introuvable.
  */
 router.get("/:id", getUserById);
-
-/**
- * @swagger
- * /users/fave/{id}:
- *   get:
- *     summary: Récupérer les favoris d'un utilisateur précis
- *     tags:
- *       - Users
- *     parameters:
- *       - name: id
- *         in: path
- *         required: true
- *         description: ID de l'utilisateur
- *         schema:
- *           type: integer
- *     responses:
- *       200:
- *         description: Utilisateur trouvé.
- *       404:
- *         description: Utilisateur introuvable.
- */
-router.get("/fave/:id", getUserFavoritesById);
 
 /**
  * @swagger

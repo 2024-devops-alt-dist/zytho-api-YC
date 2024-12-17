@@ -6,7 +6,7 @@ import { pool } from "../config/db";
 export const getUsers = async (req: Request, res: Response) => {
   try {
     const data = await pool.query(
-      `SELECT users.first_name, users.last_name, users.email, users.role
+      `SELECT *
         FROM users`
     );
     res.status(200).json({ users: data.rows });
@@ -32,27 +32,6 @@ export const getUserById = async (req: Request, res: Response) => {
     res.status(500).send(error.message);
   }
 };
-
-// Récupérer les bières favorites pour un utilisateur précis.
-export const getUserFavoritesById = async (req: Request, res: Response) => {
-    try {
-      const { id } = req.params;
-      const favoritesBeers = await pool.query(
-        `SELECT beers.beer_id, beers.name, beers.price, beers.picture_url
-        FROM users 
-        JOIN favorites
-        ON users.user_id = favorites.user_id
-        JOIN beers
-        ON beers.beer_id = favorites.beer_id
-        WHERE users.user_id = $1`,
-        [id]
-      );
-      res.status(200).json({ favorites: favoritesBeers.rows[0] });
-    } catch (error: any) {
-      console.error(`Erreur lors de la récupération des favoris de l'utilisateur`, error);
-      res.status(500).send(error.message);
-    }
-  };
 
 // Mettre à jour les informations d'un utilisateur
 export const updateUser = async (req: Request, res: Response) => {
