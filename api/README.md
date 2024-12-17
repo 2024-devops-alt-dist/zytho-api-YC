@@ -35,3 +35,41 @@ Cette API Zythologue est une API REST construite afin de pouvoir gérer et explo
 
 - Ajouter une bière à ses favoris en temps qu'utilisateur connecté ✔️
 - Supprimer une bière de ses favoris en temps qu'utilisateur connecté ✔️
+
+## Technologies utilisées
+
+- Backend: Node.js et Express.js
+- Base de Donnée: PostgreSQL
+- Authentification: bcrypt pour hasher les mots de passe
+- Variables d'environnements : Dotenv
+- Documentation: Swagger pour la documentation API 
+- TypeScript: Gestion des Types
+
+## Installation 
+
+### Pré-requis
+- Node.js et NPM installés
+- Docker
+
+### Etapes
+
+1. Cloner le repo Github 💾
+
+```bash
+ git clone https://github.com/2024-devops-alt-dist/zytho-api-YC.git
+ cd zytho-api-YC
+ ```
+
+ 2. Lancer le Docker de l'API avec Docker Compose 🐳
+
+ ```
+ docker-compose up --build -d
+ ```
+
+ 3. Débrouille toi 🔥
+
+ Rends-toi sur l'URL http://localhost:3000
+
+ ## API Endpoints - Swagger
+
+Une fois le projet lancé en local, rends-toi sur http://localhost:3000/api-docs/#/ pour voir tous les endpoints de l'API
