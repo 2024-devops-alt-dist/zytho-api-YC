@@ -20,13 +20,13 @@ export const getUsers = async (req: Request, res: Response) => {
 export const getUserById = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const beer = await pool.query(
+    const user = await pool.query(
       `SELECT *
         FROM users
         WHERE users.user_id = $1`,
       [id]
     );
-    res.status(200).json({ beer: beer.rows[0] });
+    res.status(200).json({ user: user.rows[0] });
   } catch (error: any) {
     console.error(`Erreur lors de la récupération de la utilisateur`, error);
     res.status(500).send(error.message);
