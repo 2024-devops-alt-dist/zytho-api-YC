@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getUsers, getUserById, getUserFavoritesById, createUser, updateUser, deleteUserById } from "../controllers/usersController";
+import { getUsers, getUserById, getUserFavoritesById, updateUser, deleteUserById } from "../controllers/usersController";
 export const router = Router();
 
 /**
@@ -60,44 +60,6 @@ router.get("/:id", getUserById);
  *         description: Utilisateur introuvable.
  */
 router.get("/fave/:id", getUserFavoritesById);
-
-/**
- * @swagger
- * /users:
- *   post:
- *     summary: Ajouter un utilisateur à la base de données
- *     tags:
- *       - Users
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               first_name:
- *                 type: string
- *               last_name:
- *                 type: string
- *               email:
- *                 type: string
- *               password:
- *                 type: string
- *               role:
- *                 type: string
- *             required:
- *               - first_name
- *               - last_name
- *               - email
- *               - password
- *               - role
- *     responses:
- *       201:
- *         description: Utilisateur ajouté avec succès.
- *       400:
- *         description: Données invalides ou manquantes.
- */
-router.post("/", createUser);
 
 /**
  * @swagger
