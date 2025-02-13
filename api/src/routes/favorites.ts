@@ -11,7 +11,7 @@ export const router = Router();
  *     tags:
  *       - Favorites
  *     parameters:
- *       - name: id
+ *       - name: user_id
  *         in: path
  *         required: true
  *         description: ID de l'utilisateur connecté
@@ -29,7 +29,7 @@ export const router = Router();
  *       404:
  *         description: Bière introuvable.
  */
-router.post("/fave/:user_id/:beer_id", newFavoriteBeerById);
+router.post("/:user_id/:beer_id", newFavoriteBeerById);
 
 /**
  * @swagger
@@ -57,7 +57,7 @@ router.post("/fave/:user_id/:beer_id", newFavoriteBeerById);
  *       404:
  *         description: Bière introuvable.
  */
-router.delete("/fave/:user_id/:beer_id", deleteFavoriteBeerById);
+router.delete("/:user_id/:beer_id", deleteFavoriteBeerById);
 
 /**
  * @swagger
@@ -79,4 +79,4 @@ router.delete("/fave/:user_id/:beer_id", deleteFavoriteBeerById);
  *       404:
  *         description: Utilisateur introuvable.
  */
-router.get("/fave/:user_id", getUserFavoritesById);
+router.get("/:user_id", getUserFavoritesById);

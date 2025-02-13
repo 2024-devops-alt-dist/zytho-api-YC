@@ -7,7 +7,7 @@ import { count, error } from "console";
 export const getBreweries = async (req: Request, res: Response) => {
   try {
     const breweries = await pool.query(
-      `SELECT name, country, region, picture_url FROM breweries`
+      `SELECT * FROM breweries`
     );
     res.status(200).json({ breweries: breweries.rows });
   } catch (error: any) {
@@ -23,6 +23,22 @@ export const getBreweryById = async (req: Request, res: Response) => {
     const brewery = await pool.query(
       `SELECT * FROM breweries
         WHERE brewery_id = $1`,
+      [id]
+    );
+    res.status(200).json({ brewery: brewery.rows[0] });
+  } catch (error: any) {
+    console.error(`Erreur lors de la récupération de la brasserie`, error);
+    res.status(500).send(error.message);
+  }
+};
+
+// Récupérer une brasserie par l'id de son propriétaire
+export const getBreweryByOwnerId = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const brewery = await pool.query(
+      `SELECT * FROM breweries
+        WHERE user_id = $1`,
       [id]
     );
     res.status(200).json({ brewery: brewery.rows[0] });

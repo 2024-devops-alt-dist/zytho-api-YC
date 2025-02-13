@@ -6,6 +6,8 @@ COPY package*.json .
 
 RUN npm ci
 
+RUN npm i --save-dev @types/cors
+
 COPY . .
 
 EXPOSE 3000

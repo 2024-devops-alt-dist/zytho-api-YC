@@ -33,6 +33,24 @@ export const getUserById = async (req: Request, res: Response) => {
   }
 };
 
+// Récupérer les informations du propriétaire d'une brasserie
+export const getUserFromBrewery = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const user = await pool.query(
+      `SELECT first_name, last_name, email, profile_pic FROM users
+      JOIN breweries
+      ON breweries.user_id = users.user_id
+      WHERE brewery_id = $1`,
+      [id]
+    );
+    res.status(200).json({ user: user.rows[0] });
+  } catch (error: any) {
+    console.error(`Erreur lors de la récupération du propriétaire de la brasserie`, error);
+    res.status(500).send(error.message);
+  }
+};
+
 // Mettre à jour les informations d'un utilisateur
 export const updateUser = async (req: Request, res: Response) => {
   try {

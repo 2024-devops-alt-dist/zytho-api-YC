@@ -7,6 +7,7 @@ CREATE TABLE users (
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
     email VARCHAR(50) UNIQUE NOT NULL,
+    profile_pic VARCHAR(255),
     password TEXT NOT NULL, --TEXT pour pouvoir y entrer un mdp hashé (donc long)
     role roles NOT NULL -- Utilise le type ENUM personnalisé
 );

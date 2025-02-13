@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { pool } from "../config/db";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import { User } from "../models/User";
 
 // Créer un nouvel utilisateur -- Mot de passe enregistré hashé avec bCrypt

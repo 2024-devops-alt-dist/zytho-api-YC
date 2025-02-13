@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createBrewery, deleteBreweryById, getBreweries, getBreweryById, updateBrewery } from "../controllers/breweriesController";
+import { createBrewery, deleteBreweryById, getBreweries, getBreweryById, updateBrewery, getBreweryByOwnerId } from "../controllers/breweriesController";
 export const router = Router();
 
 /**
@@ -38,6 +38,28 @@ router.get("/", getBreweries);
  *         description: Brasserie introuvable.
  */
 router.get("/:id", getBreweryById);
+
+/**
+ * @swagger
+ * /breweries/owner/{id}:
+ *   get:
+ *     summary: Récupérer une brasserie grâce à l'ID de son propriétaire
+ *     tags:
+ *       - Breweries
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         description: ID du propriétaire
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Brasserie trouvée.
+ *       404:
+ *         description: Brasserie introuvable.
+ */
+router.get("/owner/:id", getBreweryByOwnerId);
 
 /**
  * @swagger

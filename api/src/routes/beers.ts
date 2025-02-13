@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getBeers, createBeer, getBeerById, updateBeer, deleteBeerById } from "../controllers/beersController";
+import { getBeers, createBeer, getBeerById, getBeersFromBrewery, getIngredientOfBeer, updateBeer, deleteBeerById } from "../controllers/beersController";
 export const router = Router();
 
 /**
@@ -38,6 +38,50 @@ router.get("/", getBeers);
  *         description: Bière introuvable.
  */
 router.get("/:id", getBeerById);
+
+/**
+ * @swagger
+ * /beers/breweries/{id}:
+ *   get:
+ *     summary:  Récupérer toutes les bières d'une brasserie précise grâce à son ID
+ *     tags:
+ *       - Beers
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         description: ID de la brasserie
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Brasserie trouvée.
+ *       404:
+ *         description: Brasserie introuvable.
+ */
+router.get("/breweries/:id", getBeersFromBrewery);
+
+/**
+ * @swagger
+ * /beers/ingredients/{id}:
+ *   get:
+ *     summary: Récupérer les ingrédients d'une bière précise grâce à son ID
+ *     tags:
+ *       - Beers
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         description: ID de la bière
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Bière trouvée.
+ *       404:
+ *         description: Bière introuvable.
+ */
+router.get("/ingredients/:id", getIngredientOfBeer);
 
 /**
  * @swagger
