@@ -98,12 +98,13 @@ cp .env api/
  docker-compose up --build -d
  ```
 
-Avec cette commande, deux containers sont lancés, un pour la base de données Postgres et un pour l'api Node.
+Avec cette commande, le container Postgres pour la base de donnée est lancé et le serveur de l'api est démarré!
 
 
 ### 5. Débrouille toi 🔥
 
  Rends-toi sur l'URL http://localhost:3000
+ Et teste la base de donnée dans Docker 
 
  ## API Endpoints - Swagger
 
