@@ -4,7 +4,7 @@ import { pool } from "../config/db";
 // Ajouter une bière à ses favoris pour un utilisateur connecté
 export const newFavoriteBeerById = async (req: Request, res: Response) => {
     try {
-      const { user_id, beer_id } = req.params;
+      const { beer_id, user_id } = req.params;
       const addBeer = await pool.query(
         `INSERT INTO favorites (beer_id, user_id)
          VALUES ($1, $2)
